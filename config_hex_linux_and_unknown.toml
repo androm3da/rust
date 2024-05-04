@@ -820,9 +820,10 @@ cxx = "hexagon-unknown-linux-musl-clang++"
 linker = "hexagon-unknown-linux-musl-clang"
 ar = "llvm-ar"
 ranlib = "llvm-ranlib"
-musl-root = "/pkg/qct/software/llvm/build_tools/clang+llvm-16.0.0-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/target/hexagon-unknown-linux-musl/usr"
 llvm-libunwind = 'in-tree'
-#qemu-rootfs = "/pkg/qct/software/llvm/build_tools/clang+llvm-16.0.0-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/target/hexagon-unknown-linux-musl/usr"
+musl-root = "/local/mnt/workspace/install/clang+llvm-18.1.2-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/target/hexagon-unknown-linux-musl/usr"
+#qemu-rootfs = "/local/mnt/workspace/install/clang+llvm-18.1.2-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/target/hexagon-unknown-linux-musl/usr"
+runner = "/local/mnt/workspace/install/clang+llvm-18.1.2-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/bin/qemu-hexagon -L /local/mnt/workspace/install/clang+llvm-18.1.2-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/target/hexagon-unknown-linux-musl/usr"
 
 
 # =============================================================================
