@@ -12,7 +12,8 @@ export PATH=${PWD}:/pkg/qct/software/gnu/gcc/6.3.0/bin:${HOST_TOOLCHAIN}/bin:${P
 #export PATH=${PATH}:/local/mnt/workspace/install/clang+llvm-17.0.0-rc3-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/bin
 export PATH=${PATH}:/local/mnt/workspace/install/clang+llvm-18.1.2-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/bin
 
-export CARGO_TARGET_HEXAGON_UNKNOWN_LINUX_MUSL_RUNNER="qemu-hexagon -L /local/mnt/workspace/install/clang+llvm-18.1.2-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/target/hexagon-unknown-linux-musl/usr"
+export QEMU_LD_PREFIX=/local/mnt/workspace/install/clang+llvm-18.1.2-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/target/hexagon-unknown-linux-musl/usr
+export CARGO_TARGET_HEXAGON_UNKNOWN_LINUX_MUSL_RUNNER="qemu-hexagon -L ${QEMU_LD_PREFIX}"
 
 
 #/pkg/qct/software/llvm/build_tools/clang+llvm-16.0.0-cross-hexagon-unknown-linux-musl/x86_64-linux-gnu/target/hexagon-unknown-linux-musl/
