@@ -6,7 +6,7 @@ use crate::io::{self, BorrowedCursor, IoSlice, IoSliceMut, SeekFrom};
 use crate::path::{Path, PathBuf};
 pub use crate::sys::fs::common::Dir;
 use crate::sys::time::SystemTime;
-use crate::sys::unsupported;
+use crate::sys::pal::unsupported;
 
 pub struct File(!);
 

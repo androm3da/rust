@@ -8,7 +8,10 @@ mod tests;
 use libc::{c_char, c_int, c_void};
 
 use crate::ffi::{CStr, OsStr, OsString};
+#[cfg(not(target_os = "qurt"))]
 use crate::os::unix::prelude::*;
+#[cfg(target_os = "qurt")]
+use crate::os::qurt::prelude::*;
 use crate::path::{self, PathBuf};
 use crate::sys::cvt;
 use crate::sys::helpers::run_path_with_cstr;
@@ -521,6 +524,12 @@ pub fn current_exe() -> io::Result<PathBuf> {
 
     // Prepend the current working directory to the path if it's not absolute.
     if !path.is_absolute() { getcwd().map(|cwd| cwd.join(path)) } else { Ok(path) }
+}
+
+#[cfg(target_os = "qurt")]
+pub fn current_exe() -> io::Result<PathBuf> {
+    // QuRT doesn't have a concept of current executable path
+    super::unsupported::unsupported()
 }
 
 #[cfg(not(target_os = "espidf"))]

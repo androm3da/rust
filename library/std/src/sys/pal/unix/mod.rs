@@ -56,7 +56,7 @@ pub unsafe fn init(argc: isize, argv: *const *const u8, sigpipe: u8) {
         let mut opened_devnull = -1;
         #[allow(dead_code, unused_variables, unused_mut)]
         let mut open_devnull = || {
-            #[cfg(not(all(target_os = "linux", target_env = "gnu")))]
+            #[cfg(not(any(all(target_os = "linux", target_env = "gnu"), target_os = "qurt")))]
             use libc::open;
             #[cfg(all(target_os = "linux", target_env = "gnu"))]
             use libc::open64 as open;
@@ -87,6 +87,7 @@ pub unsafe fn init(argc: isize, argv: *const *const u8, sigpipe: u8) {
             target_os = "horizon",
             target_os = "vita",
             target_os = "rtems",
+            target_os = "qurt",
             // The poll on Darwin doesn't set POLLNVAL for closed fds.
             target_vendor = "apple",
         )))]
@@ -133,6 +134,7 @@ pub unsafe fn init(argc: isize, argv: *const *const u8, sigpipe: u8) {
             target_os = "l4re",
             target_os = "horizon",
             target_os = "vita",
+            target_os = "qurt",
         )))]
         {
             use crate::sys::os::errno;
@@ -426,7 +428,7 @@ cfg_select! {
     _ => {}
 }
 
-#[cfg(any(target_os = "espidf", target_os = "horizon", target_os = "vita", target_os = "nuttx"))]
+#[cfg(any(target_os = "espidf", target_os = "horizon", target_os = "vita", target_os = "nuttx", target_os = "qurt"))]
 pub mod unsupported {
     use crate::io;
 

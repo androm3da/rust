@@ -421,7 +421,8 @@ pub fn set_name(name: &CStr) {
     target_os = "freebsd",
     target_os = "dragonfly",
     target_os = "nuttx",
-    target_os = "cygwin"
+    target_os = "cygwin",
+    target_os = "qurt"
 ))]
 pub fn set_name(name: &CStr) {
     unsafe {

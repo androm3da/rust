@@ -3,7 +3,7 @@
 #![forbid(unsafe_op_in_unsafe_fn)]
 
 cfg_select! {
-    any(target_family = "unix", target_os = "wasi") => {
+    all(any(target_family = "unix", target_os = "wasi"), not(target_os = "qurt")) => {
         mod unix;
         pub use unix::*;
     }
@@ -19,5 +19,8 @@ cfg_select! {
         mod sgx;
         pub use sgx::*;
     }
-    _ => {}
+    _ => {
+        mod unsupported;
+        pub use unsupported::*;
+    }
 }
