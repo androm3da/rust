@@ -826,7 +826,11 @@ impl Config {
         let unsupported_target = self.target_cfg().env == "sgx"
             || matches!(self.target_cfg().arch.as_str(), "wasm32" | "wasm64")
             || self.target_cfg().os == "emscripten";
-        !unsupported_target
+
+        // QEMU user-space emulation doesn't support subprocess spawning properly
+        let qemu_emulation = self.runner.as_ref().is_some_and(|r| r.contains("qemu"));
+
+        !unsupported_target && !qemu_emulation
     }
 }
 
